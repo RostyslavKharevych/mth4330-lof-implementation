@@ -17,10 +17,11 @@ Custom Python implementation of the Local Outlier Factor (LOF) algorithm from sc
 To ensure consistency across local machines and GitHub Codespaces, follow these steps to set up the development environment.
 
 1. **Clone the repository:**
-   git clone [https://github.com/](https://github.com/)[your-username]/mth4330-lof-implementation.git
+
+   git clone https://github.com/RostyslavKharevych/mth4330-lof-implementation.git
    cd mth4330-lof-implementation
 
-2. Create a virtual environment:
+3. Create a virtual environment:
 * Windows: python -m venv venv
 * macOS/Linux/Codespaces: python3 -m venv venv
 
@@ -29,7 +30,8 @@ To ensure consistency across local machines and GitHub Codespaces, follow these 
 * macOS/Linux/Codespaces: source venv/bin/activate
 
 4. Install dependencies:
-  pip install -r requirements.txt
+
+   pip install -r requirements.txt
 
 ## Development Workflow
 Create a new branch for each specific feature or mathematical component (e.g., git checkout -b feature-lrd-calculation). Test your code locally before opening a Pull Request to the main branch.
