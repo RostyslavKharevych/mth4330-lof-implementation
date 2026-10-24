@@ -22,15 +22,15 @@ To ensure consistency across local machines and GitHub Codespaces, follow these 
 
    cd mth4330-lof-implementation
 
-3. Create a virtual environment:
-* Windows: python -m venv venv
+2. **Create a virtual environment:**
+* Windows (Command Prompt): python -m venv venv
 * macOS/Linux/Codespaces: python3 -m venv venv
 
-3. Activate the virtual environment:
-* Windows: .\venv\Scripts\activate
+3. **Activate the virtual environment:**
+* Windows (Command Prompt): .\venv\Scripts\activate
 * macOS/Linux/Codespaces: source venv/bin/activate
 
-4. Install dependencies:
+4. **Install dependencies:**
 
    pip install -r requirements.txt
 
