@@ -19,6 +19,7 @@ To ensure consistency across local machines and GitHub Codespaces, follow these 
 1. **Clone the repository:**
 
    git clone https://github.com/RostyslavKharevych/mth4330-lof-implementation.git
+
    cd mth4330-lof-implementation
 
 3. Create a virtual environment:
