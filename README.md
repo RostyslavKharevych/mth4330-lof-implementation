@@ -7,6 +7,29 @@ Custom Python implementation of the Local Outlier Factor (LOF) algorithm from sc
 * **Datasets:** ODDS Annthyroid, ADBench Tabular Suite (cardio), and Kaggle Credit Card Fraud.
 * **Evaluation Metrics:** Average Precision, ROC-AUC, and Precision@n.
 
+## Dataset Sources
+
+The project evaluates Local Outlier Factor on three anomaly
+detection datasets:
+
+1. **ODDS Thyroid**
+   - Source: https://shebuti.com/outlier-detection-datasets-odds/
+   - Clinical measurements used for thyroid anomaly detection.
+   - Dataset filename and variant will be verified before evaluation.
+
+2. **ADBench Cardio**
+   - Source: https://github.com/Minqi824/ADBench
+   - Dataset file: `6_cardio.npz`
+   - Fetal cardiotocography measurements.
+
+3. **Credit Card Fraud**
+   - Source: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
+   - Dataset file: `creditcard.csv`
+   - Financial transactions labeled as legitimate or fraudulent.
+
+Ground-truth labels will be used for evaluation, not for
+training the unsupervised LOF algorithm.
+
 ## Repository Structure
 * `/data/`: Contains raw and processed data splits (ignored by git due to file size).
 * `/src/`: Core Python modules for the LOF model, data pipelines, tuning, and evaluation.
