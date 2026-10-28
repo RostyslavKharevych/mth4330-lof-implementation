@@ -4,7 +4,7 @@ Custom Python implementation of the Local Outlier Factor (LOF) algorithm from sc
 ## Project Scope
 * **Core Algorithm:** Local Outlier Factor (LOF) built from scratch in Python/NumPy.
 * **Baselines:** k-Nearest Neighbors (k-NN) distance, PCA reconstruction error, and Isolation Forest.
-* **Datasets:** ODDS Annthyroid, ADBench Tabular Suite (cardio), and Kaggle Credit Card Fraud.
+* **Datasets:** ODDS Thyroid, ADBench Tabular Suite (cardio), and Kaggle Credit Card Fraud.
 * **Evaluation Metrics:** Average Precision, ROC-AUC, and Precision@n.
 
 ## Dataset Sources
