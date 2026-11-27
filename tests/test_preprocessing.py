@@ -28,7 +28,7 @@ from src.preprocessing import (
     [
         ("thyroid", (3772, 6), 93),
         ("cardio", (1831, 21), 176),
-        ("creditcard", (20000, 29), 492),
+        ("creditcard", (3_000, 29), 492),
     ],
 )
 def test_dataset_loaders_shapes_dtypes_and_anomalies(

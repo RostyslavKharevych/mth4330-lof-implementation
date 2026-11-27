@@ -71,7 +71,7 @@ def load_cardio(
 
 def load_creditcard(
     data_dir: Optional[Union[str, Path]] = None,
-    n_samples: int = 20_000,
+    n_samples: int = 3_000,
     random_state: int = 42,
 ) -> tuple[np.ndarray, np.ndarray]:
     """
