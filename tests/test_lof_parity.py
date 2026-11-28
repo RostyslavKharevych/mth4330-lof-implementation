@@ -11,8 +11,11 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from src.model.lfc import calculate_lrd_loops, calculate_lrd_vectorized
+from src.model.distances import pairwise_euclidean_distances
+from src.model.lrd import calculate_lrd_loops, calculate_lrd_vectorized
 from src.model.lof import calculate_lof_iterative, calculate_lof_vectorized
+from src.model.neighborhoods import calculate_minpts_neighborhoods
+from src.model.reachability import calculate_reachability_distances
 
 
 def compute_temporary_lof_inputs(
@@ -312,3 +315,30 @@ def test_empty_and_zero_neighbor_validation() -> None:
 
     with pytest.raises(ValueError):
         calculate_lof_vectorized(np.empty((2, 0), dtype=np.intp), np.ones(2))
+
+
+@pytest.mark.parametrize("min_pts", [5, 10, 20])
+def test_upstream_pipeline_parity_with_sklearn(min_pts: int) -> None:
+    """
+    Verify the full 4-step pipeline (distances -> neighborhoods -> reachability -> lrd -> lof)
+    matches sklearn.neighbors.LocalOutlierFactor on tie-free varying-density data.
+    """
+    X, inlier_mask, outlier_mask = _make_varying_density_dataset()
+
+    D = pairwise_euclidean_distances(X)
+    kdist, neighborhoods = calculate_minpts_neighborhoods(D, min_pts=min_pts)
+    reach_dist = calculate_reachability_distances(D, kdist)
+
+    assert all(len(neighbors) == min_pts for neighbors in neighborhoods)
+
+    lrd = calculate_lrd_vectorized(neighborhoods, reach_dist)
+    lof_scores = calculate_lof_vectorized(neighborhoods, lrd)
+
+    sklearn_model = LocalOutlierFactor(n_neighbors=min_pts, metric="euclidean")
+    sklearn_model.fit(X)
+    sklearn_lof = -sklearn_model.negative_outlier_factor_
+
+    assert float(np.max(np.abs(lof_scores - sklearn_lof))) <= 1e-10
+    assert float(pearsonr(lof_scores, sklearn_lof).statistic) >= 0.999
+    assert float(spearmanr(lof_scores, sklearn_lof).statistic) >= 0.999
+    assert np.min(lof_scores[outlier_mask]) > np.median(lof_scores[inlier_mask])
