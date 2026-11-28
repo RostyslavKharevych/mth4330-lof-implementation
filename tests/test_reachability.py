@@ -5,7 +5,7 @@ import pytest
 from src.model.distances import pairwise_euclidean_distances
 from src.model.neighborhoods import calculate_minpts_neighborhoods
 from src.model.reachability import calculate_reachability_distances
-from src.model.lfc import calculate_lrd_vectorized
+from src.model.lrd import calculate_lrd_vectorized
 from src.model.lof import calculate_lof_vectorized
 
 
